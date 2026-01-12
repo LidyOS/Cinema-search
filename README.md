@@ -41,7 +41,7 @@
 
 ### Сборка образа
 ```
-docker build -t tg_bot .
+docker build -t tg_bot src/
 ```
 
 ### Запуск через Docker Compose
