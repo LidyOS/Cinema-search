@@ -39,11 +39,6 @@
 - API_KEY_KINOPOISK -- токен для API https://kinopoiskapiunofficial.tech/profile
 - apikey -- токен для https://www.omdbapi.com
 
-### Сборка образа
-```
-docker build -t tg_bot src/
-```
-
 ### Запуск через Docker Compose
 ```
 docker-compose up -d
