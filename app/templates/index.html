@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск фильма</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Поиск фильма</h1>
+
+        <form method="post" action="/search" class="search-form">
+            <input type="text" name="query" placeholder="Введите название фильма" required>
+            <button type="submit">Найти</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if result %}
+            <div class="movie-card">
+                {% if result.poster %}
+                    <img src="{{ result.poster }}" alt="Poster" class="poster">
+                {% endif %}
+                <div class="card-content">
+                    {{ result.card | safe }}
+                    {% if result.watch_url %}
+                        <p><a href="{{ result.watch_url }}" target="_blank" class="watch-btn">▶Смотреть фильм</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
