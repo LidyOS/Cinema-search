@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
@@ -23,6 +23,7 @@ async def index(request: Request):
 
 @app.post("/search", response_class=HTMLResponse)
 async def search(request: Request, query: str = Form(...)):
+    print('post search')
     try:
         watch_url, original_title, kp_info = await parse_kinopoisk(query)
 
@@ -58,3 +59,8 @@ async def search(request: Request, query: str = Form(...)):
             "result": None,
             "error": str(e)
         })
+
+
+@app.get("/search", response_class=HTMLResponse)
+async def search(_: Request):
+    return RedirectResponse(url='/', status_code=301)

@@ -1,7 +1,16 @@
 version: '3.8'
 services:
   tg_bot:
-    image: tg_bot
+    build: tg_bot
+    volumes:
+      - ./data_base:/app/data
+    env_file:
+      - .env
+  web:
+    build: app
+    ports:
+      - "80:8000"
+    restart: unless-stopped
     volumes:
       - ./data_base:/app/data
     env_file:
